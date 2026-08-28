@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mwinuka Enterprises Co. Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>.brand,.mobile-brand{font-size:13px;line-height:1.2}.brand>span:last-child,.mobile-brand>span:last-child{color:var(--ink)}</style>
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-brand"><span class="brand-mark"><span></span><span></span><span></span></span><span>Mwinuka Enterprises Co. Ltd</span></div>
+      <div class="login-copy"><p class="eyebrow">Inventory management</p><h1>Welcome back</h1><p>Sign in to manage your stock and keep your business moving.</p></div>
+      <form id="loginForm" class="login-form">
+        <label>Email address<input id="loginEmail" type="email" autocomplete="username" placeholder="Enter your email address" required></label>
+        <label>Password<div class="password-field"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" id="togglePassword" aria-label="Show password">Show</button></div></label>
+        <div class="login-options"><label class="remember"><input id="rememberMe" type="checkbox" checked> Remember me</label><a href="#forgot-password" id="forgotPasswordLink">Forgot password?</a></div>
+        <p class="login-error" id="loginError" role="alert" hidden>Incorrect email or password.</p>
+        <button class="primary-button login-button" type="submit">Sign in <span>→</span></button>
+      </form>
+    </div>
+    <div class="login-decoration"><div class="decoration-circle"></div><div class="decoration-card"><span>▣</span><div><strong>Inventory at a glance</strong><small>Everything in one place</small></div></div></div>
+  </section>
+  <div class="modal-backdrop" id="resetModal" hidden>
+    <form class="modal" id="resetForm">
+      <button type="button" class="modal-close" id="closeResetModal" aria-label="Close">×</button>
+      <p class="eyebrow">Account recovery</p><h2>Reset your password</h2>
+      <p class="modal-description">Enter your account email and we’ll send you a secure password reset link.</p>
+      <label>Email address<input id="resetEmail" type="email" placeholder="Enter your email address" required></label>
+      <p class="login-error" id="resetMessage" role="status" hidden></p>
+      <div class="modal-actions"><button type="button" class="outline-button" id="cancelReset">Cancel</button><button class="primary-button" type="submit">Send reset link</button></div>
+    </form>
+  </div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Mwinuka Enterprises Co. Ltd home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>Mwinuka Enterprises Co. Ltd</span>
+      </a>
+      <div class="workspace-label">Workspace</div>
+      <div class="workspace-switcher">
+        <span class="workspace-icon">M</span>
+        <span><strong>Mwinuka Enterprises Co. Ltd</strong><small>Admin workspace</small></span>
+        <span class="chevron">⌄</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item" href="#inventory"><span class="nav-icon">□</span> Inventory <b id="inventoryBadge">24</b></a>
+        <a class="nav-item" href="#suppliers"><span class="nav-icon">♧</span> Suppliers</a>
+        <a class="nav-item" href="#reports"><span class="nav-icon">◫</span> Reports</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> Settings</a>
+        <a class="help-card" href="#help"><span class="help-icon">?</span><span><strong>Need help?</strong><small>Visit our help center</small></span><span>›</span></a>
+        <div class="user-profile"><span class="avatar">JM</span><span><strong>John Mwinuka</strong><small>Administrator</small></span><button class="logout-button" id="logoutButton" type="button">↪</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><span></span><span></span><span></span></span><span>Mwinuka Enterprises Co. Ltd</span></div>
+        <div class="breadcrumb">Workspace <span>/</span> Overview</div>
+        <div class="top-actions">
+          <button class="icon-button notification" aria-label="Notifications">♧<i></i></button>
+          <div class="top-avatar">JM</div>
+        </div>
+      </header>
+      <section class="page-heading">
+        <div><p class="eyebrow">Friday, 28 August 2026</p><h1>Good morning, John <span>✦</span></h1><p class="subheading">Here's what's happening with your inventory today.</p></div>
+        <button class="primary-button" id="addProductButton"><span>＋</span> Add product</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Inventory summary">
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon purple">▣</span><span class="trend positive">↗ 8.2%</span></div><p>Total products</p><strong id="totalProducts">24</strong><small>vs. last month</small></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon green">◉</span><span class="trend positive">↗ 12.5%</span></div><p>Stock value</p><strong id="stockValue">TZS 18.4M</strong><small>vs. last month</small></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon orange">⌁</span><span class="trend neutral">This month</span></div><p>Items received</p><strong>1,284</strong><small>Across 3 warehouses</small></article>
+        <article class="stat-card alert-card"><div class="stat-top"><span class="stat-icon red">!</span><span class="trend negative">Needs attention</span></div><p>Low stock items</p><strong id="lowStockCount">5</strong><small>Below reorder level</small></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel inventory-panel" id="inventory">
+          <div class="panel-header"><div><h2>Inventory overview</h2><p>Track and manage your products</p></div><a class="text-button" href="#inventory">View all <span>→</span></a></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search products..."></label></div>
+          <div class="table-wrap"><table><thead><tr><th>Product</th><th>SKU</th><th>In stock</th><th>Status</th><th></th></tr></thead><tbody id="inventoryBody"></tbody></table></div>
+          <div class="table-footer"><span id="tableCount">Showing 6 of 24 products</span><div class="pagination"><button disabled>‹</button><button class="current">1</button><button>2</button><button>3</button><button>4</button><button>›</button></div></div>
+        </section>
+        <aside class="right-column">
+          <section class="panel low-stock-panel"><div class="panel-header"><div><h2>Low stock alert</h2><p>Products that need attention</p></div><span class="alert-count" id="alertCount">5</span></div><div class="low-stock-list" id="lowStockList"></div><button class="outline-button" id="restockButton">View all low stock <span>→</span></button></section>
+          <section class="panel activity-panel"><div class="panel-header"><div><h2>Recent activity</h2><p>Latest inventory updates</p></div><a class="text-button" href="#activity">View all</a></div><div class="activity-list"><div class="activity-item"><span class="activity-dot purple"></span><div><strong>Stock received</strong><p>Samsung 55" TV · <b>+12 units</b></p><small>10 min ago</small></div></div><div class="activity-item"><span class="activity-dot orange"></span><div><strong>New product added</strong><p>Sunlight Dishwashing Liquid</p><small>2 hours ago</small></div></div><div class="activity-item"><span class="activity-dot green"></span><div><strong>Stock adjusted</strong><p>Azam Energy Drink · <b>+24 units</b></p><small>Yesterday</small></div></div></div></section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="productModal" hidden>
+    <form class="modal" id="productForm">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <p class="eyebrow">Inventory</p><h2>Add a new product</h2><p class="modal-description">Add a product to start tracking its stock.</p>
+      <label>Product name<input name="name" required placeholder="e.g. Coca-Cola 500ml"></label>
+      <label>SKU<input name="sku" required placeholder="e.g. BEV-001"></label>
+      <div class="form-row"><label>Quantity<input name="quantity" required type="number" min="0" placeholder="0"></label><label>Reorder level<input name="reorder" required type="number" min="0" placeholder="10"></label></div>
+      <div class="modal-actions"><button type="button" class="outline-button" id="cancelModal">Cancel</button><button class="primary-button" type="submit">Add product</button></div>
+    </form>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
