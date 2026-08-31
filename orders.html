@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Management - Mwinuka Enterprises Co. Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>.brand,.mobile-brand{font-size:13px;line-height:1.2}.brand>span:last-child,.mobile-brand>span:last-child{color:var(--ink)}</style>
+</head>
+<body>
+  <section class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-brand"><span class="brand-mark"><span></span><span></span><span></span></span><span>Mwinuka Enterprises Co. Ltd</span></div>
+      <div class="login-copy"><p class="eyebrow">Order Management</p><h1>Welcome back</h1><p>Sign in to manage orders and inventory.</p></div>
+      <form id="loginForm" class="login-form">
+        <label>Email address<input id="loginEmail" type="email" autocomplete="username" placeholder="Enter your email address" required></label>
+        <label>Password<div class="password-field"><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required><button type="button" id="togglePassword" aria-label="Show password">Show</button></div></label>
+        <div class="login-options"><label class="remember"><input id="rememberMe" type="checkbox" checked> Remember me</label><a href="#forgot-password" id="forgotPasswordLink">Forgot password?</a></div>
+        <p class="login-error" id="loginError" role="alert" hidden>Incorrect email or password.</p>
+        <button class="primary-button login-button" type="submit">Sign in <span>→</span></button>
+      </form>
+    </div>
+    <div class="login-decoration"><div class="decoration-circle"></div><div class="decoration-card"><span>✦</span><div><strong>Order Management</strong><small>Track inventory in real-time</small></div></div></div>
+  </section>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html" aria-label="Mwinuka Enterprises Co. Ltd home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>Mwinuka Enterprises Co. Ltd</span>
+      </a>
+      <div class="workspace-label">Workspace</div>
+      <div class="workspace-switcher">
+        <span class="workspace-icon">M</span>
+        <span><strong>Mwinuka Enterprises Co. Ltd</strong><small>Order Management</small></span>
+        <span class="chevron">⌄</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-item active" href="index.html"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item" href="index.html"><span class="nav-icon">□</span> Inventory</a>
+        <a class="nav-item active" href="#orders"><span class="nav-icon">✦</span> Orders</a>
+        <a class="nav-item" href="index.html"><span class="nav-icon">◫</span> Reports</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <a class="nav-item" href="index.html"><span class="nav-icon">⚙</span> Settings</a>
+        <a class="help-card" href="#help"><span class="help-icon">?</span><span><strong>Need help?</strong><small>Visit our help center</small></span><span>›</span></a>
+        <div class="user-profile"><span class="avatar">JM</span><span><strong>John Mwinuka</strong><small>Administrator</small></span><button class="logout-button" id="logoutButton" type="button">↪</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="orders">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark"><span></span><span></span><span></span></span><span>Mwinuka Enterprises Co. Ltd</span></div>
+        <div class="breadcrumb">Workspace <span>/</span> Orders</div>
+        <div class="top-actions">
+          <button class="icon-button notification" aria-label="Notifications">♧<i></i></button>
+          <div class="top-avatar">JM</div>
+        </div>
+      </header>
+      <section class="page-heading">
+        <div><p class="eyebrow">Friday, 28 August 2026</p><h1>Order Management <span>✦</span></h1><p class="subheading">Place new orders and track inventory in real-time.</p></div>
+        <button class="primary-button" id="newOrderButton"><span>＋</span> New order</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Order summary">
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon purple">✦</span><span class="trend positive">↗ 15.3%</span></div><p>Total orders</p><strong id="totalOrders">0</strong><small>This month</small></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon green">◉</span><span class="trend positive">↗ 22.8%</span></div><p>Orders completed</p><strong id="completedOrders">0</strong><small>Successfully delivered</small></article>
+        <article class="stat-card"><div class="stat-top"><span class="stat-icon orange">⌁</span><span class="trend neutral">Pending</span></div><p>Processing orders</p><strong id="pendingOrders">0</strong><small>Awaiting fulfillment</small></article>
+        <article class="stat-card alert-card"><div class="stat-top"><span class="stat-icon red">!</span><span class="trend neutral">Monitor</span></div><p>Low inventory</p><strong id="lowInventoryCount">0</strong><small>Below reorder level</small></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel orders-panel" id="ordersPanel">
+          <div class="panel-header"><div><h2>Recent orders</h2><p>Track and manage customer orders</p></div><a class="text-button" href="#orders">View all <span>→</span></a></div>
+          <div class="toolbar"><label class="search-box"><span>⌕</span><input id="searchOrders" type="search" placeholder="Search orders..."></label><select id="filterStatus"><option value="">All statuses</option><option value="pending">Pending</option><option value="processing">Processing</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>Order #</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+          <div class="table-footer"><span id="orderCount">Showing 0 orders</span><div class="pagination"><button disabled>‹</button><button class="current">1</button><button>2</button><button>›</button></div></div>
+        </section>
+        <aside class="right-column">
+          <section class="panel inventory-monitor-panel"><div class="panel-header"><div><h2>Inventory monitor</h2><p>Real-time stock levels</p></div><span class="alert-count" id="lowStockAlertCount">0</span></div><div class="inventory-monitor" id="inventoryMonitor"></div><button class="outline-button" id="viewInventoryButton">View full inventory <span>→</span></button></section>
+          <section class="panel activity-panel"><div class="panel-header"><div><h2>Recent activity</h2><p>Latest order & inventory updates</p></div><a class="text-button" href="#activity">View all</a></div><div class="activity-list" id="activityList"><p class="subheading">No recent activity</p></div></section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="orderModal" hidden>
+    <form class="modal order-form" id="orderForm">
+      <button type="button" class="modal-close" id="closeOrderModal" aria-label="Close">×</button>
+      <p class="eyebrow">Order Management</p><h2>Create new order</h2><p class="modal-description">Add customer details and select products.</p>
+      
+      <div class="form-section">
+        <h3>Customer Information</h3>
+        <label>Customer name<input id="customerName" name="customer_name" required placeholder="e.g. John Doe"></label>
+        <label>Phone number<input id="customerPhone" name="customer_phone" required placeholder="e.g. +255 xxx xxx xxx"></label>
+        <label>Email address<input id="customerEmail" name="customer_email" type="email" placeholder="e.g. john@example.com"></label>
+      </div>
+
+      <div class="form-section">
+        <h3>Order Items</h3>
+        <div class="order-items" id="orderItems"></div>
+        <button type="button" id="addItemButton" class="outline-button">+ Add product</button>
+      </div>
+
+      <div class="form-section">
+        <h3>Notes</h3>
+        <textarea id="orderNotes" name="notes" placeholder="Add any special instructions or notes..." rows="3"></textarea>
+      </div>
+
+      <div class="order-summary">
+        <div class="summary-row"><span>Subtotal:</span><span id="subtotal">TZS 0.00</span></div>
+        <div class="summary-row"><span>Total items:</span><span id="totalItems">0</span></div>
+        <div class="summary-row highlight"><span>Total amount:</span><span id="totalAmount">TZS 0.00</span></div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="outline-button" id="cancelOrder">Cancel</button>
+        <button class="primary-button" type="submit">Place order</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="itemTemplate" style="display:none;">
+    <div class="order-item">
+      <div class="item-row">
+        <select class="product-select" required><option value="">Select product...</option></select>
+        <input type="number" class="quantity-input" min="1" placeholder="Qty" required>
+        <input type="number" class="price-input" step="0.01" placeholder="Price" required>
+        <button type="button" class="remove-item-btn" aria-label="Remove item">×</button>
+      </div>
+      <div class="item-info"><small class="stock-info"></small><small class="subtotal-info">Subtotal: TZS 0.00</small></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="orders.js"></script>
+</body>
+</html>
