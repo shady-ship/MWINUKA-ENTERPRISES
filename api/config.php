@@ -5,7 +5,7 @@ declare(strict_types=1);
 const DB_HOST = 'localhost';
 const DB_NAME = 'mwinuka_enterprises';
 const DB_USER = 'root';
-const DB_PASSWORD = '';
+const DB_PASSWORD = 'SHADy002**';
 
 function database(): PDO
 {
